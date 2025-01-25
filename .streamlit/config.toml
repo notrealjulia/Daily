@@ -1,0 +1,11 @@
+[theme]
+base="light"
+backgroundColor="#ffffff"  # White background
+secondaryBackgroundColor="#f7f7f7"  # Light gray for sections
+primaryColor="#00A0AF"  # Ramboll teal - for interactive elements
+textColor="#323232"  # Ramboll dark gray - for text
+font="sans serif"
+
+# Additional custom styling
+[server]
+enableXsrfProtection=false  # If you're embedding the app
