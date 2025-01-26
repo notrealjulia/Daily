@@ -14,12 +14,6 @@ st.set_page_config(
 )
 
 
-selected_model = "gpt-4o"  # Setting the default model
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = selected_model
-
-
-
 st.title(':blue[Welcome to daily questions for Ramboll Tech!]')
 
 
@@ -132,7 +126,11 @@ def daily_question(model, client):
 #Change to True to use the system variable OPENAI_API_KEY
 client = initialize_openai_client(use_env_variable=True)
 
+selected_model = "gpt-4o"  # Setting the default model
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = selected_model
 
+    
 def input_participants():
     # Simple text input with large styling
     num_input = st.text_input(
