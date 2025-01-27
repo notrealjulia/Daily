@@ -92,10 +92,12 @@ def send_random_prompt():
         "Come up with a nihilistic question to get to know a team member, be creative, don't use big words. Return the question only",
         "Give me an original question to ask my team on a team's meeting to get to know them better, return only the question and add a random emoji",
         "In style of gen-z, ask me a RANDOM question to get to know me better. Return the question only and add many many emojis",
-        "Ask me something personal, but not too personal, something that would make me think. Return only the question",
         "Ask me a question like a robot that is trying to befriend a human. Return one question only and some kind of techy emoji",
         "Ask me a question that is easy to asnwer first thing in the morning, add a smiley face in the beginning",
-        "ask me something basic, like if I could bea fruit what fruit would I be on Wednesdays? or what is my favortie color on a rainy day? Return the question only"
+        "ask me something basic, like 'if you could bea fruit what fruit would I be on Wednesdays?' or 'what is your favortie color on a rainy day?'. Not exactly that, but something like that. Return the question only"
+        "Channel your inner conspiracy theorist and ask me a weird but safe-for-work question. Return the question only and add an alien emoji",
+        "Give me a question in the style of a medieval knight who works in modern IT support. Return the question only",
+        "Ask me something like a startup founder who's had too much coffee. Add excessive emojis",
     ]
     
     random_prompt = random.choice(messages)
