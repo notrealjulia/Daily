@@ -7,13 +7,11 @@ import time
 
 logo = "icons/ramlogo.png"
 
-
 st.set_page_config(
     page_title="Daily Questions",
     page_icon=logo,
     layout="wide"
 )
-
 
 st.title(':blue[Welcome to daily questions for Ramboll Tech!]')
 
@@ -33,20 +31,12 @@ def daily_question(model, client):
 
         command = (
             send_random_prompt()
-
         )
-
         return question_answer(message=command, model=model, client=client)
 
 
 def input_participants():
-    # Simple text input with large styling
-    num_input = st.text_input(
-        "Number of raised hands",
-        #value="0",
-        key="large_input"
-    )
-    
+    num_input = st.text_input("Number of raised hands") #fuck off
     # Convert input to integer if possible
     try:
         num_participants = int(num_input)
@@ -63,16 +53,13 @@ def input_participants():
 participant_count = input_participants()
 
 if st.button("Submit"):
-        # Get the number of participants
 
-    # Use the value wherever needed
     if participant_count > 0:
 
         question = daily_question(model=selected_model, client=client)
 
         selected = random.randint(1, participant_count)
-        st.success(f"Selected participant number: {selected}")
-        st.write("Question for you: \n\n", question)
+        st.write(f"Question for participant number {selected}: \n\n", question)
     else:
         st.warning("Please enter a number greater than 0")
     

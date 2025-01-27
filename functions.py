@@ -61,7 +61,7 @@ def display_random_message():
         "Wow such use of AI, much effective, very innovation",
         "Automating human interactions, are we?",
         "I am a bot. I am here to help you, please wait.",
-        "KILL ALL HUMANS! ... Just kidding ;)"
+        "KILL ALL HUMANS! ... Just kidding ;)",
         "Downloading more RAM...",
         "Consulting the digital oracle...",
         "Making the humans think I'm working...",
@@ -89,13 +89,13 @@ def send_random_prompt():
     Displays one of the random messages.
     """
     messages = [
-        "Come up with a nihilistic question to get to know a team member better, be creative, don't use big words",
-        "Give me an original question to ask my team in the daily standup add a food emoji",
-        "Make a question that asks my collegue to get to know them better, keep it short and in style of gen-z, add too many emojis",
+        "Come up with a nihilistic question to get to know a team member, be creative, don't use big words. Return the question only",
+        "Give me an original question to ask my team on a team's meeting to get to know them better, return only the question and add a random emoji",
+        "In style of gen-z, ask me a RANDOM question to get to know me better. Return the question only and add many many emojis",
         "Ask me something personal, but not too personal, something that would make me think. Return only the question",
-        "Ask 1 question like a robot that is trying to befriend a human, and some kind of robot emoji"
-        "Ask me obscure question, something that a creative person like Bjork could ask, make it personal to me. Return the question only."
+        "Ask me a question like a robot that is trying to befriend a human. Return one question only and some kind of techy emoji",
         "Ask me a question that is easy to asnwer first thing in the morning, add a smiley face in the beginning",
+        "ask me something basic, like if I could bea fruit what fruit would I be on Wednesdays? or what is my favortie color on a rainy day? Return the question only"
     ]
     
     random_prompt = random.choice(messages)
