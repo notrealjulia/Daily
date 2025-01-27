@@ -6,6 +6,9 @@ primaryColor="0041c2"  #  - for interactive elements
 textColor="#323232"  # Ramboll dark gray - for text
 font="sans serif"
 
+[ui]
+hideTopBar = true
+
 # Additional custom styling
 [server]
 enableXsrfProtection=false  # If you're embedding the app

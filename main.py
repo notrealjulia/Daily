@@ -10,7 +10,7 @@ logo = "icons/ramlogo.png"
 st.set_page_config(
     page_title="Daily Questions",
     page_icon=logo,
-    layout="wide"
+    layout="wide",
 )
 
 st.title(':blue[Welcome to daily questions for Ramboll Tech!]')
