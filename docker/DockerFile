@@ -1,0 +1,53 @@
+# FROM artifactory.ramboll.com/renopexcontainer-docker/renopexbase:22.2.1
+FROM python:3.11
+
+# Install sudo and create user
+RUN apt-get update && apt-get install -y sudo \
+    && useradd --home-dir /home/user --create-home --shell /bin/bash user -g root -G sudo -u 1001 \
+    && passwd -d user
+
+# Set working directory and run package installation as root
+WORKDIR /app
+
+# Install required packages as root
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    locales \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install micromamba
+RUN mkdir -p /home/user/.local/bin /home/user/micromamba
+ENV MAMBA_ROOT_PREFIX=/home/user/micromamba
+RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C /tmp \
+    && mv /tmp/bin/micromamba /home/user/.local/bin/micromamba
+RUN /home/user/.local/bin/micromamba shell init --shell bash --root-prefix /home/user/micromamba
+
+# Set up configuration files
+COPY docker/.mambarc /home/user/.mambarc
+COPY docker/.mambarc /home/user/.condarc
+ENV MAMBARC=/home/user/.mambarc
+ENV CONDARC=/home/user/.condarc
+ENV MAMBA_EXE=/home/user/.local/bin/micromamba
+ENV MAMBA_ROOT_PREFIX=/home/user/micromamba
+
+# Fix .bashrc for non-interactive shells
+RUN grep -v '[ -z "\$PS1" ] && return' /home/user/.bashrc > /home/user/.bashrc.tmp \
+    && mv /home/user/.bashrc.tmp /home/user/.bashrc
+
+# Copy required files
+COPY . /app
+
+# Create build environment
+RUN /home/user/.local/bin/micromamba env create -n ramdaily python=3.11
+
+# Activate the environment and install the packages
+RUN /home/user/.local/bin/micromamba run -n ramdaily pip install -r /app/requirements.txt
+
+EXPOSE 443
+
+HEALTHCHECK CMD curl --fail http://localhost:443/_stcore/health
+
+ENTRYPOINT ["/home/user/.local/bin/micromamba", "run", "-n", "ramdaily", "streamlit", "run", "/app/main.py", "--server.port=443", "--server.address=0.0.0.0"]

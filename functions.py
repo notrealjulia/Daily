@@ -3,6 +3,12 @@ import random
 import os
 from openai import OpenAI
 
+__all__ = [
+    "initialize_openai_client",
+    "question_answer",
+    "display_random_message",
+    "send_random_prompt",
+]
 
 
 def initialize_openai_client(use_env_variable=True):
@@ -20,8 +26,11 @@ def initialize_openai_client(use_env_variable=True):
     if use_env_variable:
         api_key = os.environ.get("OPENAI_API_KEY")
     else:
-        api_key = st.text_input("OPENAI API KEY", placeholder="The App does NOT work without the API Key. Get it from OpenAI.")
-    
+        api_key = st.text_input(
+            "OPENAI API KEY",
+            placeholder="The App does NOT work without the API Key. Get it from OpenAI.",
+        )
+
     client = OpenAI(api_key=api_key)
     return client
 
@@ -51,7 +60,6 @@ def question_answer(message, model, client):
     return response
 
 
-
 def display_random_message():
     """
     Displays one of the random messages.
@@ -77,12 +85,12 @@ def display_random_message():
         "Applying machine learning to office gossip...",
         "Training neural networks to procrastinate... hang on",
         "Updating my humor algorithms",
-        "This is how you start the day?"
-
+        "This is how you start the day?",
     ]
-    
+
     random_message = random.choice(messages)
     return random_message
+
 
 def send_random_prompt():
     """
@@ -99,6 +107,6 @@ def send_random_prompt():
         "Give me a question in the style of a medieval knight who works in modern IT support. Return the question only",
         "Ask me something like a startup founder who's had too much coffee. Add excessive emojis",
     ]
-    
+
     random_prompt = random.choice(messages)
     return random_prompt
