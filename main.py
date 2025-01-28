@@ -1,7 +1,5 @@
 import streamlit as st
-from openai import OpenAI
-from functions import *
-import os
+from functions import initialize_openai_client, question_answer, display_random_message, send_random_prompt
 import random
 import time
 
@@ -13,12 +11,12 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title(':blue[Welcome to daily questions for Ramboll Tech!]')
+st.title(":blue[Welcome to daily questions for Ramboll Tech!]")
 
-#Change to True to use the system variable OPENAI_API_KEY
+# Change to True to use the system variable OPENAI_API_KEY
 client = initialize_openai_client(use_env_variable=True)
 
-selected_model = "gpt-4o"  
+selected_model = "gpt-4o"
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = selected_model
 
@@ -29,14 +27,12 @@ def daily_question(model, client):
     with st.spinner(message):
         time.sleep(2)  # Dramatic pause
 
-        command = (
-            send_random_prompt()
-        )
+        command = send_random_prompt()
         return question_answer(message=command, model=model, client=client)
 
 
 def input_participants():
-    num_input = st.text_input("Number of raised hands") #fuck off
+    num_input = st.text_input("Number of raised hands")  # fuck off
     # Convert input to integer if possible
     try:
         num_participants = int(num_input)
@@ -53,14 +49,10 @@ def input_participants():
 participant_count = input_participants()
 
 if st.button("Submit"):
-
     if participant_count > 0:
-
         question = daily_question(model=selected_model, client=client)
 
         selected = random.randint(1, participant_count)
         st.write(f"Question for participant number {selected}: \n\n", question)
     else:
         st.warning("Please enter a number greater than 0")
-    
-
