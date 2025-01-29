@@ -104,8 +104,8 @@ def send_random_prompt():
         "Ask me a question that is easy to asnwer first thing in the morning, add a smiley face in the beginning",
         "ask me something basic, like 'if you could bea fruit what fruit would I be on Wednesdays?' or 'what is your favortie color on a rainy day?'. Not exactly that, but something like that. Return the question only"
         "Channel your inner conspiracy theorist and ask me a weird but safe-for-work question. Return the question only and add an alien emoji",
-        "Give me a question in the style of a medieval knight who works in modern IT support. Return the question only",
-        "Ask me something like a startup founder who's had too much coffee. Add excessive emojis",
+        "Give me a question in the style of a medieval knight who works in modern IT support. Return the question only, use simple Egnlish words",
+        "Ask me something like a startup founder who's had too much coffee. Add excessive emojis, return 1 question only, think outside the box",
     ]
 
     random_prompt = random.choice(messages)
